@@ -8,74 +8,89 @@ import axios from 'axios'
 function Buscador() {
   const [productos,setProductos] = useState()
   const [query,setQuery] = useState('')
-  const {register,handleSubmit,formState: { errors}} = useForm({
-    defaultValues:productos
-  })
+  const {register,handleSubmit} = useForm({defaultValues:query})
   const [buscando,setBuscando] = useState(false)
-  const fetchApi = async () => {
-    var config = {
-      method: 'get',
-      url: 'http://localhost:9000/productos',
-      headers: { 
-        'Content-Type': 'application/json'
-      }
-    };
-    
-    axios(config)
-    .then(function (response) {
-      setProductos(response.data);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-    
-  }
-  
+  var config
 
-  const updateProductos = async () => {
-    var data = JSON.stringify({
-      "brand": query
-    });
-    
-    var config = {
-      method: 'post',
+  const raiz =  () => {
+    return {
+      method: 'get',
       url: 'http://localhost:9000/productos/busqueda',
       headers: { 
         'Content-Type': 'application/json'
-      },
-      data : data
-    };
-    
-    axios(config)
-    .then(function (response) {
-      setProductos(response.data)
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-    
+      }
+    } 
+  }
+  const scopeBusqueda =(data) => {      
+    return  {
+      method: 'post',
+        url: 'http://localhost:9000/productos/busqueda',
+        headers: { 
+          'Content-Type': 'application/json'
+        },
+        data : data
+    }
   }
   
   useEffect(() => {
-    if(query == '') fetchApi()
-    else if(!buscando){
-      updateProductos()
-      setBuscando(false)
-    } 
-  },[query,productos])
-
+    if(query !== '' && buscando){
+      const data = JSON.stringify({
+        "brand": query
+      });
+      config = scopeBusqueda(data)
+    }
+    else{
+      config = raiz()
+    }
+    axios(config)
+      .then(function (response) {
+        if((response.data.length === 0)){
+          const data = JSON.stringify({
+            "description": query
+          });
+          config = scopeBusqueda(data)
+          axios(config)
+          .then(function (response) {
+            if((response.data.length === 0)){
+              const data = JSON.stringify({
+                "id": query
+              });
+              config = scopeBusqueda(data)
+              axios(config)
+              .then(function (response) {
+                if(!(response.data.length === 0)) setProductos(response.data)
+              })
+              .catch(function (error) {
+                throw error.message
+              });
+            }else{
+              setProductos(response.data)
+            }
+          })
+          .catch(function (error) {
+            throw error.message
+          });
+        }else{
+          setProductos(response.data)
+        }
+      })
+      .catch(function (error) {
+        throw error.message
+      });
+  },[query,buscando])
   return (
     <>
         <div className="topnav">
-            <button className="active" href="#GitFrontEND">Desafio Front End</button>
+            <p>Desafio Front End</p>
             <form method='GET' onSubmit={handleSubmit((data) => {setQuery(data.query); setBuscando(true); })}>
               <input id="busqueda" {...register('query',{minLength: {value:3,message : "minimo 3 caracteres para hacer una busqueda"}})} type="text" placeholder="Buscar productos"/>
               <button type='submit' id='boton-buscar' className='hidden'></button>
             </form>
-            <button className="active" href="#getAllProductos">Productos</button>
+            <p>Productos</p>
         </div> 
-
-        {!productos ? <h3>cargando...</h3> :
+        {!productos ? 
+          <h3>cargando...</h3> 
+        :
           <Resultados productos={productos} />
         }
     </>

@@ -5,9 +5,7 @@ import Buscador from './components/buscador/buscador';
 function App() {
   
   return (
-    <>
       <Buscador />
-    </>
   );
 }
 

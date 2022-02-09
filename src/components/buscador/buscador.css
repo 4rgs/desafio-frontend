@@ -1,36 +1,26 @@
-/* Add a black background color to the top navigation bar */
+
 .topnav {
-    overflow: hidden;
     background-color: #2196F3;
+    flex: 1;
     display: flex;
     justify-content: space-between;
     color: rgba(44, 44, 44, 0.87);
   }
   
   /* Style the links inside the navigation bar */
-  .topnav button {
-    float: left;
+  .topnav p {
+    float: center;
     border:none;
-    display: block;
-    color: black;
+    display: inline;
+    color: rgb(221, 221, 221);
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
   }
-  
-  .topnav button:hover {
-    background-color: #ddd;
-    color: black;
-  }
-  
-  .topnav button.active {
-    background-color: #2196F3;
-    color: white;
-  }
-  
   .topnav input[type=text] {
     float: right;
+    text-align: center;
     flex:auto;
     padding: 6px;
     margin: 15px 15px 15px 15px;
@@ -39,10 +29,10 @@
     font-size: 17px;
   }
   
-  @media screen and (max-width: 600px) {
-    .topnav button, .topnav input[type=text] {
-      float: none;
-      display: block;
+  @media screen and (max-width: 500px) {
+    
+    .topnav p, .topnav input[type=text] {
+      float: center;
       text-align: left;
       width: 100%;
       margin: 0;
@@ -50,9 +40,14 @@
     }
     .topnav input[type=text] {
       border: 1px solid #ccc;
+      
+    }
+    .topnav p{
+      display: none;
     }
   }
   .hidden {
+    position: absolute;
+    z-index: -1;
     display: none;
-    background-color: #2196F3;
   }
