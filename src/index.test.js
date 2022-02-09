@@ -50,9 +50,8 @@ describe('Resultados Props', () => {
 
 describe('Funcionalidad', () =>{
   it("clickear en el boton buscar - realiza la peticion de actualizar Resultados", () => {
-    const wrapperBuscador = mount(<Buscador />)
-    
-    wrapperBuscador.find('#boton-buscar').simulate('click')
+    const wrapperBuscador = shallow(<Buscador />)
+    console.log(wrapperBuscador)
     expect(wrapperBuscador)
   })
   it("Agrega etiqueta de Descuento cuando esté presente", () => {

@@ -10,29 +10,30 @@ function Buscador() {
   const [query,setQuery] = useState('')
   const {register,handleSubmit} = useForm({defaultValues:query})
   const [buscando,setBuscando] = useState(false)
-  var config
+  
 
-  const raiz =  () => {
-    return {
-      method: 'get',
-      url: 'http://localhost:9000/productos/busqueda',
-      headers: { 
-        'Content-Type': 'application/json'
-      }
-    } 
-  }
-  const scopeBusqueda =(data) => {      
-    return  {
-      method: 'post',
+  
+  useEffect(() => {
+    var config
+    const raiz =  () => {
+      return {
+        method: 'get',
         url: 'http://localhost:9000/productos/busqueda',
         headers: { 
           'Content-Type': 'application/json'
-        },
-        data : data
+        }
+      } 
     }
-  }
-  
-  useEffect(() => {
+    const scopeBusqueda =(data) => {      
+      return  {
+        method: 'post',
+          url: 'http://localhost:9000/productos/busqueda',
+          headers: { 
+            'Content-Type': 'application/json'
+          },
+          data : data
+      }
+    }
     if(query !== '' && buscando){
       const data = JSON.stringify({
         "brand": query
@@ -45,14 +46,14 @@ function Buscador() {
     axios(config)
       .then(function (response) {
         if((response.data.length === 0)){
-          const data = JSON.stringify({
+          let data = JSON.stringify({
             "description": query
           });
           config = scopeBusqueda(data)
           axios(config)
           .then(function (response) {
             if((response.data.length === 0)){
-              const data = JSON.stringify({
+              let data = JSON.stringify({
                 "id": query
               });
               config = scopeBusqueda(data)
