@@ -1,8 +1,7 @@
 import React from 'react'
 import Buscador from './components/buscador/buscador'
 import Resultados from './components/resultados/resultados'
-import { mount } from 'enzyme'
-import { shallow } from 'enzyme'
+import { mount , shallow} from 'enzyme'
 import Productos from '../utils/Products'
 const busqueda = [{
         query:181
