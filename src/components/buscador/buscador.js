@@ -14,6 +14,7 @@ function Buscador() {
   const [buscando,setBuscando] = useState(false)
   
   useEffect(() => {
+    document.title = "Desafio Frontend"
     var config
     const raiz =  () => {
       return {

@@ -49,16 +49,3 @@ describe('Resultados Props', () => {
     expect(wrapper.props().query[2]).toEqual(formatoConDescription)
   })
 })
-
-describe('Funcionalidad', () =>{
-  it("clickear en el boton buscar - realiza la peticion de actualizar Resultados", () => {
-    const wrapperBuscador = shallow(<Buscador />)
-    console.log(wrapperBuscador.props())
-    expect(wrapperBuscador)
-  })
-  it("Agrega etiqueta de Descuento cuando esté presente", () => {
-  })
-  it("Diferencia el tipo de input", () => {
-    expect(true).toBe(true)
-  })
-})
