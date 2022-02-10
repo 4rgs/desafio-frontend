@@ -1,4 +1,6 @@
-import React,{ useState ,useEffect } from 'react';
+import React from 'react';
+import { useState } from 'react'
+import { useEffect } from 'react'
 import { useForm } from "react-hook-form";
 import './buscador.css';
 import Resultados from '../resultados/resultados';
@@ -10,8 +12,6 @@ function Buscador() {
   const [query,setQuery] = useState('')
   const {register,handleSubmit} = useForm({defaultValues:query})
   const [buscando,setBuscando] = useState(false)
-  
-
   
   useEffect(() => {
     var config
@@ -36,56 +36,30 @@ function Buscador() {
     }
     if(query !== '' && buscando){
       const data = JSON.stringify({
-        "brand": query
+        "query": query
       });
       config = scopeBusqueda(data)
     }
     else{
       config = raiz()
     }
+    
     axios(config)
-      .then(function (response) {
-        if((response.data.length === 0)){
-          let data = JSON.stringify({
-            "description": query
-          });
-          config = scopeBusqueda(data)
-          axios(config)
-          .then(function (response) {
-            if((response.data.length === 0)){
-              let data = JSON.stringify({
-                "id": query
-              });
-              config = scopeBusqueda(data)
-              axios(config)
-              .then(function (response) {
-                if(!(response.data.length === 0)) setProductos(response.data)
-              })
-              .catch(function (error) {
-                throw error.message
-              });
-            }else{
-              setProductos(response.data)
-            }
-          })
-          .catch(function (error) {
-            throw error.message
-          });
-        }else{
-          setProductos(response.data)
-        }
-      })
-      .catch(function (error) {
-        throw error.message
-      });
+    .then(function (response) {
+      setProductos(response.data);
+    })
+    .catch(function (error) {
+      console.log(error.message);
+    });
+    
   },[query,buscando])
   return (
-    <>
+    <div>
         <div className="topnav">
             <p>Desafio Front End</p>
             <form method='GET' onSubmit={handleSubmit((data) => {setQuery(data.query); setBuscando(true); })}>
-              <input id="busqueda" {...register('query',{minLength: {value:3,message : "minimo 3 caracteres para hacer una busqueda"}})} type="text" placeholder="Buscar productos"/>
-              <button type='submit' id='boton-buscar' className='hidden'></button>
+              <input id="busqueda" {...register('query')} type="text" placeholder="Buscar productos"/>
+              <button type='submit' id='boton-buscar' value="" className='hidden'></button>
             </form>
             <p>Productos</p>
         </div> 
@@ -94,7 +68,7 @@ function Buscador() {
         :
           <Resultados productos={productos} />
         }
-    </>
+    </div>
   );
 }
 

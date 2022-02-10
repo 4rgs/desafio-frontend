@@ -14,31 +14,31 @@ function Resultados({productos}) {
       return false
   }
 
-  const getProductosReales = () => {
-    var config = {
-      method: 'get',
-      url: 'http://localhost:9000/productos',
-      headers: { 
-        'Content-Type': 'application/json'
-      }
-    }
-    
-    axios(config)
-    .then(function (response) {
-      setProductosReales(response.data)
-    })
-    .catch(function (error) {
-      throw error.message;
-    })
-  }
 
   useEffect(()=>{
+    const getProductosReales = async () => {
+      axios({
+        method: 'get',
+        url: 'http://localhost:9000/productos',
+        headers: { 
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(function (response) {
+        setProductosReales(response.data)
+      })
+      .catch(function (error) {
+        console.log(error.message)
+      })
+    }
     if(!productosReales)
       getProductosReales()
     if(!productos)
       setBuscando(true)
     return () => setBuscando(false)
-  },[buscando])
+  },
+  // eslint-disable-next-line
+  [buscando])
 
   return (
     <>

@@ -43,6 +43,11 @@
     ]
   },
   "devDependencies": {
-    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.6"
+    "@babel/plugin-syntax-jsx": "^7.16.7",
+    "@babel/preset-env": "^7.16.11",
+    "@types/jest": "^27.4.0",
+    "@types/react": "^17.0.39",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.6",
+    "babel-preset-react-app": "^10.0.1"
   }
 }

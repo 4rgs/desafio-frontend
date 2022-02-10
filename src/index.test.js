@@ -1,22 +1,24 @@
 import React from 'react'
 import Buscador from './components/buscador/buscador'
 import Resultados from './components/resultados/resultados'
-import { shallow, mount } from "enzyme"
-
+import { mount } from 'enzyme'
+import { shallow } from 'enzyme'
+import Productos from '../utils/testProducts'
 const busqueda = [{
-        id:181
+        query:181
       },{
-        brand:"adda"
+        query:"adda"
       },{
-        description:"odrnuh ixdta"
+        query:"odrnuh ixdta"
       }
     ]
+
 describe('Rendering components', () => {
   it("renderiza Buscador sin crashear", () => {
-    shallow(<Buscador/>)
+    const wrapper = shallow(<Buscador />);
   })
   it("renderiza Resultados sin crashear", () => {
-    shallow(<Resultados/>)
+    const wrapper = shallow(<Resultados productos={Productos}/>)
   })
   it("renderiza contenedor de Buscador sin crashear", () => {
     const wrapper = shallow(<Buscador/>)
@@ -26,15 +28,15 @@ describe('Rendering components', () => {
     expect(wrapper.contains(container2)).toEqual(true)
   })
   it("renderiza contenedor de Resultados sin crashear", () => {
-    const wrapper = shallow(<Resultados/>)
+    const wrapper = shallow(<Resultados productos={Productos}/>)
     const container = ( <h3>cargando...</h3>) 
     expect(wrapper.contains(container)).toEqual(true)
   })
 });
 
 describe('Resultados Props', () => {
-  const wrapper = mount(<Resultados query={busqueda}/>)
-  it("accept props per ID",() => {
+  const wrapper = mount(<Buscador query={busqueda}/>)
+  it("accept props per ID",  () => {
     const formatoConId = busqueda[0]
     expect(wrapper.props().query[0]).toEqual(formatoConId)
   })
@@ -51,11 +53,10 @@ describe('Resultados Props', () => {
 describe('Funcionalidad', () =>{
   it("clickear en el boton buscar - realiza la peticion de actualizar Resultados", () => {
     const wrapperBuscador = shallow(<Buscador />)
-    console.log(wrapperBuscador)
+    console.log(wrapperBuscador.props())
     expect(wrapperBuscador)
   })
   it("Agrega etiqueta de Descuento cuando esté presente", () => {
-    expect(true).toBe(true)
   })
   it("Diferencia el tipo de input", () => {
     expect(true).toBe(true)
