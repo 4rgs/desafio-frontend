@@ -3,7 +3,7 @@ import Buscador from './components/buscador/buscador'
 import Resultados from './components/resultados/resultados'
 import { mount } from 'enzyme'
 import { shallow } from 'enzyme'
-import Productos from '../utils/testProducts'
+import Productos from '../utils/Products'
 const busqueda = [{
         query:181
       },{
@@ -15,10 +15,10 @@ const busqueda = [{
 
 describe('Rendering components', () => {
   it("renderiza Buscador sin crashear", () => {
-    const wrapper = shallow(<Buscador />);
+    shallow(<Buscador />);
   })
   it("renderiza Resultados sin crashear", () => {
-    const wrapper = shallow(<Resultados productos={Productos}/>)
+    shallow(<Resultados productos={Productos}/>)
   })
   it("renderiza contenedor de Buscador sin crashear", () => {
     const wrapper = shallow(<Buscador/>)

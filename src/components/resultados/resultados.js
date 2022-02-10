@@ -8,10 +8,7 @@ function Resultados({productos}) {
   const [buscando,setBuscando] = useState(false)
   
   const esDescuento = (producto) => {
-    if(productosReales.find(elem => elem.id === producto.id && elem.price === producto.price*2)) 
-      return true
-    else 
-      return false
+    return productosReales.find(elem => elem.id === producto.id && elem.price === producto.price*2)
   }
 
 
