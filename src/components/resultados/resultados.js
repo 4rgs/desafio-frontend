@@ -10,7 +10,7 @@ function Resultados({productos}) {
   const esDescuento = (producto) => {
     return productosReales.find(elem => elem.id === producto.id && elem.price === producto.price*2)
   }
-  const renderProds = async () => {
+  const renderProds = () => {
     return !productos ? <h3>cargando...</h3> :
             productos.map((producto,index)=> {
               return  <div key={producto.id} className="card">
@@ -56,7 +56,7 @@ function Resultados({productos}) {
     <>
     <div className="album">
         {!productosReales ? <h3>cargando...</h3>:  
-          renderProds(productos)}
+          renderProds()}
     </div>
     </>
    
