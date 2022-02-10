@@ -10,7 +10,22 @@ function Resultados({productos}) {
   const esDescuento = (producto) => {
     return productosReales.find(elem => elem.id === producto.id && elem.price === producto.price*2)
   }
-
+  const renderProds = (productos) => {
+    return !productos ? <h3>cargando...</h3> :
+            productos.map((producto,index)=> {
+              return  <div key={producto.id} className="card">
+                  <div  className="container">
+                  {esDescuento(producto)&&<span>Descuento</span>}
+                  <h2>Producto {producto.id}</h2>
+                  <img src={'https://'+producto.image} alt={producto.image} className="img"/>
+                  <h4>Marca: {producto.brand}</h4>
+                  <h4><b>Precio: {producto.price}</b></h4>
+                  <p>Descripcion: {producto.description}</p>
+                  </div>
+                  </div>
+            } 
+          )
+  }
 
   useEffect(()=>{
     const getProductosReales = async () => {
@@ -41,20 +56,7 @@ function Resultados({productos}) {
     <>
     <div className="album">
         {!productosReales ? <h3>cargando...</h3>:  
-          !productos ? <h3>cargando...</h3> :
-          productos.map((producto,index)=> {
-            return  <div key={producto.id} className="card">
-                <div  className="container">
-                {esDescuento(producto)&&<span>Descuento</span>}
-                <h2>Producto {producto.id}</h2>
-                <img src={'https://'+producto.image} alt={producto.image} className="img"/>
-                <h4>Marca: {producto.brand}</h4>
-                <h4><b>Precio: {producto.price}</b></h4>
-                <p>Descripcion: {producto.description}</p>
-                </div>
-                </div>
-          } 
-        )}
+          renderProds(productos)}
     </div>
     </>
    

@@ -2,7 +2,7 @@ import React from 'react'
 import Buscador from './components/buscador/buscador'
 import Resultados from './components/resultados/resultados'
 import { mount , shallow} from 'enzyme'
-import Productos from '../utils/Products'
+import Productos from '../utils/Productos'
 const busqueda = [{
         query:181
       },{
