@@ -2,7 +2,8 @@ import React from 'react'
 import Buscador from './components/buscador/buscador'
 import Resultados from './components/resultados/resultados'
 import { mount , shallow} from 'enzyme'
-import Productos from '../utils/Productos'
+import testProducts from '../utils/testProducts'
+
 const busqueda = [{
         query:181
       },{
@@ -17,7 +18,7 @@ describe('Rendering components', () => {
     shallow(<Buscador />);
   })
   it("renderiza Resultados sin crashear", () => {
-    shallow(<Resultados productos={Productos}/>)
+    shallow(<Resultados productos={testProducts}/>)
   })
   it("renderiza contenedor de Buscador sin crashear", () => {
     const wrapper = shallow(<Buscador/>)
@@ -27,7 +28,7 @@ describe('Rendering components', () => {
     expect(wrapper.contains(container2)).toEqual(true)
   })
   it("renderiza contenedor de Resultados sin crashear", () => {
-    const wrapper = shallow(<Resultados productos={Productos}/>)
+    const wrapper = shallow(<Resultados productos={testProducts}/>)
     const container = ( <h3>cargando...</h3>) 
     expect(wrapper.contains(container)).toEqual(true)
   })

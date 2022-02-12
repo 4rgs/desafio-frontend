@@ -1,4 +1,4 @@
-const Productos =[
+const testProducts =[
     {
         _id: "6203e9dbdf88a067826a0fc9",
         id: 1,
@@ -8,4 +8,4 @@ const Productos =[
         price: 249362
     }
 ]
-export default Productos
+export default testProducts

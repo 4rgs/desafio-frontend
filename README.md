@@ -8,16 +8,16 @@ Proyecto basado en Create React App  [![Quality Gate Status](https://sonarcloud.
 
 To deploy this proyect first we need to run:
 ```bash
-  git clone https://github.com/SpidohCL/desafio-frontend
+git clone https://github.com/SpidohCL/desafio-frontend
 ```
 ```bash
-   cd desafio-frontend
+cd desafio-frontend
 ```
 ```bash
-  npm install
+npm install
 ```
 ```bash
-  npm run start
+npm run start
 ```
 
 
