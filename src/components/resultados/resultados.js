@@ -22,11 +22,11 @@ function Resultados({ productos }) {
         return (
           <div
             key={producto.id}
-            className="w-full md:w-1/5 lg:w-1/6 rounded-xl shadow-inner card"
+            className="w-full md:w-1/3 lg:w-1/4 xl:w-1/6 rounded-xl shadow-inner card"
           >
             <div className="w-auto rounded overflow-hidden shadow-lg">
               <img
-                className="w-auto shadow-inner"
+                className="w-48 h-48 mx-auto shadow-inner"
                 src={"https://" + producto.image}
                 alt={producto.id}
               />

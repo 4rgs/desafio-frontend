@@ -54,7 +54,7 @@ function Buscador() {
     <>
       <nav className="bg-white border-gray-200 px-2 sm:px-4 py-3 rounded dark:bg-blue-800">
         <div className="flex flex-wrap justify-between items-center mx-auto text-white">
-          <p className="hidden lg:block">Desafio Front End</p>
+          <p className="hidden md:block">Desafio Front End</p>
           <form
             method="GET"
             onSubmit={handleSubmit((data) => {
@@ -65,7 +65,7 @@ function Buscador() {
             <input
               id="busqueda"
               {...register("query")}
-              className="flex absolute inset-y-1 left-0 lg:left-1/4 p-2 pl-10 w-2/4 text-gray-900 bg-gray-50 rounded-full border border-gray-300 sm:text-sm focus:ring-blue-500 focus:border-blue-500"
+              className="flex absolute inset-y-1 left-0 md:left-1/4 p-2 pl-10 w-2/4 text-gray-900 bg-gray-50 rounded-full border border-gray-300 sm:text-sm focus:ring-blue-500 focus:border-blue-500"
               type="text"
               placeholder="Buscar productos"
             />
