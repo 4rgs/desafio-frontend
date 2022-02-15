@@ -6,7 +6,7 @@ import ReactPaginate from "react-paginate";
 function Resultados({ productos }) {
   const [productosReales, setProductosReales] = useState();
   const [buscando, setBuscando] = useState(false);
-  const [pageNumber, setPageNumber] = useState(1);
+  const [pageNumber, setPageNumber] = useState(0);
   const prodPerPage = 10;
   const pagesVisited = pageNumber * prodPerPage;
   const pageCount = Math.ceil(productos.length / prodPerPage)
@@ -16,7 +16,6 @@ function Resultados({ productos }) {
     );
   };
   const renderProds = () => {
-    console.log(pageNumber,prodPerPage,pagesVisited,pageCount)
     return (
       productos &&
       productos.slice(pagesVisited, pagesVisited + prodPerPage).map((producto, index) => {
@@ -84,7 +83,7 @@ function Resultados({ productos }) {
 
   return (
     <>
-      <div className="album">
+      <div className="album text-center ">
         {!productosReales ? <h3>cargando...</h3> : renderProds()}
         
       </div>

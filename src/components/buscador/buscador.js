@@ -42,11 +42,12 @@ function Buscador() {
 
     axios(config)
       .then(function (response) {
-        if(response.data.length === 0) alert("No se encontro el producto en base a tu criteria")
+        if (response.data.length === 0)
+          alert("No se encontro el producto en base a tu criteria");
         setProductos(response.data);
       })
       .catch(function (error) {
-        alert("Criterio de busqueda de minimo 3 caracteres")
+        alert("Criterio de busqueda de minimo 3 caracteres");
       });
   }, [query, buscando]);
   return (
