@@ -1,7 +1,6 @@
 import React from 'react'
 import Buscador from './/buscador'
 import { mount , shallow} from 'enzyme'
-import testProducts from '../..//../utils/testProducts'
 
 const busqueda = [
     {
