@@ -4,14 +4,15 @@ import Resultados from './components/resultados/resultados'
 import { mount , shallow} from 'enzyme'
 import testProducts from '../utils/testProducts'
 
-const busqueda = [{
-        query:181
-      },{
-        query:"adda"
-      },{
-        query:"odrnuh ixdta"
-      }
-    ]
+const busqueda = [
+  {
+    query:181
+  },{
+    query:"adda"
+  },{
+    query:"odrnuh ixdta"
+  }
+]
 
 describe('Rendering components', () => {
   it("renderiza Buscador sin crashear", () => {
@@ -22,7 +23,7 @@ describe('Rendering components', () => {
   })
   it("renderiza contenedor de Buscador sin crashear", () => {
     const wrapper = shallow(<Buscador/>)
-    const container1 = (<p>Desafio Front End</p>) 
+    const container1 = (<p className="hidden lg:block">Desafio Front End</p>) 
     const container2 = (<p>Productos</p>) 
     expect(wrapper.contains(container1)).toEqual(true)
     expect(wrapper.contains(container2)).toEqual(true)

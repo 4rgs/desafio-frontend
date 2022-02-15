@@ -13,6 +13,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.26.1",
+    "react-paginate": "^8.1.0",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
     "react-test-renderer": "^17.0.2",
@@ -48,6 +49,9 @@
     "@types/jest": "^27.4.0",
     "@types/react": "^17.0.39",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.6",
-    "babel-preset-react-app": "^10.0.1"
+    "autoprefixer": "^10.4.2",
+    "babel-preset-react-app": "^10.0.1",
+    "postcss": "^8.4.6",
+    "tailwindcss": "^3.0.22"
   }
 }
