@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './output.css';
 import Buscador from './components/buscador/buscador';
 import reportWebVitals from './reportWebVitals';
 

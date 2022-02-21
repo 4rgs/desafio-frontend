@@ -15,7 +15,7 @@ function Buscador() {
     const raiz = () => {
       return {
         method: "get",
-        url: "http://localhost:9000/productos/busqueda",
+        url: "https://api.spids.cl/productos/busqueda",
         headers: {
           "Content-Type": "application/json",
         },
@@ -24,7 +24,7 @@ function Buscador() {
     const scopeBusqueda = (data) => {
       return {
         method: "post",
-        url: "http://localhost:9000/productos/busqueda",
+        url: "https://api.spids.cl/productos/busqueda",
         headers: {
           "Content-Type": "application/json",
         },
@@ -52,7 +52,7 @@ function Buscador() {
   }, [query, buscando]);
   return (
     <>
-      <nav className="bg-white border-gray-200 px-2 sm:px-4 py-3 rounded dark:bg-blue-800">
+      <nav className="bg-blue-500 border-gray-200 px-2 sm:px-4 py-3 rounded">
         <div className="flex flex-wrap justify-between items-center mx-auto text-white">
           <p className="hidden md:block">Desafio Front End</p>
           <form
@@ -65,7 +65,7 @@ function Buscador() {
             <input
               id="busqueda"
               {...register("query")}
-              className="flex absolute inset-y-1 left-0 md:left-1/4 p-2 pl-10 w-2/4 text-gray-900 bg-gray-50 rounded-full border border-gray-300 sm:text-sm focus:ring-blue-500 focus:border-blue-500"
+              className="absolute h-15 w-2/4 top-1 md:left-1/4 left-0 text-center p-2 pl-10 text-gray-900 bg-gray-50 rounded-full border border-gray-300 sm:text-sm focus:ring-blue-500 focus:border-blue-500"
               type="text"
               placeholder="Buscar productos"
             />

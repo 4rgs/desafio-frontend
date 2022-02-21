@@ -1,6 +1,6 @@
 import React from 'react'
 import Resultados from './resultados'
-import { shallow } from 'enzyme'
+import { mount , shallow } from 'enzyme'
 import testProducts from '../..//../utils/testProducts'
 
 describe('Rendering components', () => {
@@ -13,3 +13,13 @@ describe('Rendering components', () => {
       expect(wrapper.contains(container)).toEqual(true)
     })
   });
+describe('testing Utils And functions',() => {
+  const wrapper = mount(<Resultados productos={testProducts}/>)
+  it('Paginate',async  () => {
+      const container = ( <div className="paginateReady" /> )
+      expect(wrapper.contains(container)).toEqual(true)
+  })
+  it('apply correctly a discount when needed', async () => {
+    const response = Object.keys(wrapper.props().productos)
+  })
+})

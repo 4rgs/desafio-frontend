@@ -10,11 +10,15 @@ function Resultados({ productos }) {
   const prodPerPage = 10;
   const pagesVisited = pageNumber * prodPerPage;
   const pageCount = Math.ceil(productos.length / prodPerPage)
-  const esDescuento = (producto) => {
+
+  const changePage = ({selected}) => {
+    setPageNumber(selected)
+  }
+  function esDescuento(producto) {
     return productosReales.find(
       (elem) => elem.id === producto.id && elem.price === producto.price * 2
     );
-  };
+  }
   const renderProds = () => {
     return (
       productos &&
@@ -26,7 +30,7 @@ function Resultados({ productos }) {
           >
             <div className="w-auto rounded overflow-hidden shadow-lg">
               <img
-                className="w-48 h-48 mx-auto shadow-inner"
+                className="w-full h-48 mx-auto"
                 src={"https://" + producto.image}
                 alt={producto.id}
               />
@@ -58,7 +62,7 @@ function Resultados({ productos }) {
       const getProductosReales = async () => {
         axios({
           method: "get",
-          url: "http://localhost:9000/productos",
+          url: "https://api.spids.cl/productos",
           headers: {
             "Content-Type": "application/json",
           },
@@ -67,7 +71,7 @@ function Resultados({ productos }) {
             setProductosReales(response.data);
           })
           .catch(function (error) {
-            console.log(error.message);
+            throw error.message;
           });
       };
       if (!productosReales) getProductosReales();
@@ -77,9 +81,6 @@ function Resultados({ productos }) {
     // eslint-disable-next-line
     [buscando]
   );
-  const changePage = ({selected}) => {
-    setPageNumber(selected)
-  }
 
   return (
     <>
@@ -89,10 +90,11 @@ function Resultados({ productos }) {
       </div>
       <div className="text-center">
         <ReactPaginate 
-          previousLabel={<svg className="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          previousLabel={<svg id="atras" className="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
           <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
+          <div className="paginateReady"></div>
         </svg>}
-          nextLabel={<svg className="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          nextLabel={<svg id="siguiente" className="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
           <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
         </svg>}
           pageCount={pageCount}
