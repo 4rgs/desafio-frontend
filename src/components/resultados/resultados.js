@@ -62,7 +62,7 @@ function Resultados({ productos }) {
       const getProductosReales = async () => {
         axios({
           method: "get",
-          url: "https://api.spids.cl/productos",
+          url:  process.env.REACT_APP_API+"/productos",
           headers: {
             "Content-Type": "application/json",
           },

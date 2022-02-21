@@ -4,7 +4,6 @@ import './output.css';
 import Buscador from './components/buscador/buscador';
 import reportWebVitals from './reportWebVitals';
 
-
 ReactDOM.render(
   <React.StrictMode>
     <Buscador />

@@ -8,14 +8,14 @@ function Buscador() {
   const [query, setQuery] = useState("");
   const { register, handleSubmit } = useForm({ defaultValues: query });
   const [buscando, setBuscando] = useState(false);
-
+  
   useEffect(() => {
     document.title = "Desafio Frontend";
     var config;
     const raiz = () => {
       return {
         method: "get",
-        url: "https://api.spids.cl/productos/busqueda",
+        url: process.env.REACT_APP_API+"/productos/busqueda",
         headers: {
           "Content-Type": "application/json",
         },
@@ -24,7 +24,7 @@ function Buscador() {
     const scopeBusqueda = (data) => {
       return {
         method: "post",
-        url: "https://api.spids.cl/productos/busqueda",
+        url: process.env.REACT_APP_API+"/productos/busqueda",
         headers: {
           "Content-Type": "application/json",
         },
