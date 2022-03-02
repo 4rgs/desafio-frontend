@@ -26,6 +26,6 @@ npm run start
 - [@AlvaroGonzalez](https://github.com/SpidohCL)
 
 
-## Demo en Heroku (Failing)
+## Demo on Lab Server
 
-https://desafio-frontend-ags.herokuapp.com/
+https://www.spids.cl
