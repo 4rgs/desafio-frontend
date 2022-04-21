@@ -6,10 +6,10 @@ import ReactPaginate from "react-paginate";
 function Resultados({ productos }) {
   const [productosReales, setProductosReales] = useState();
   const [buscando, setBuscando] = useState(false);
-  const [pageNumber, setPageNumber] = useState(0);
+  const [pageNumber, setPageNumber] = useState(1);
   const prodPerPage = 10;
   const pagesVisited = pageNumber * prodPerPage;
-  const pageCount = Math.ceil(productos.length / prodPerPage)
+  const [pageCount, SetPageCount] = useState(0)
 
   const changePage = ({selected}) => {
     setPageNumber(selected)
@@ -62,13 +62,16 @@ function Resultados({ productos }) {
       const getProductosReales = async () => {
         axios({
           method: "get",
-          url:  process.env.REACT_APP_API+"/productos",
+          url:  process.env.REACT_APP_API+"/api/productos/busqueda",
           headers: {
             "Content-Type": "application/json",
           },
         })
           .then(function (response) {
-            setProductosReales(response.data);
+            console.log(response.data)
+            setProductosReales(response.data.data);
+            setPageNumber(response.data.page)
+            SetPageCount(response.data.last_page)
           })
           .catch(function (error) {
             throw error.message;

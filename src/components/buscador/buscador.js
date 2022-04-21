@@ -15,36 +15,30 @@ function Buscador() {
     const raiz = () => {
       return {
         method: "get",
-        url: process.env.REACT_APP_API+"/productos/busqueda",
+        url: process.env.REACT_APP_API+"/api/productos/busqueda",
         headers: {
           "Content-Type": "application/json",
         },
       };
     };
-    const scopeBusqueda = (data) => {
+    const scopeBusqueda = (query) => {
       return {
-        method: "post",
-        url: process.env.REACT_APP_API+"/productos/busqueda",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        data: data,
+        method: "get",
+        url: process.env.REACT_APP_API+"/api/productos/busqueda?query="+query
       };
     };
     if (query !== "" && buscando) {
-      const data = JSON.stringify({
-        query: query,
-      });
-      config = scopeBusqueda(data);
+      config = scopeBusqueda(query);
     } else {
       config = raiz();
     }
 
     axios(config)
       .then(function (response) {
+        console.log(response.data.data)
         if (response.data.length === 0)
           alert("No se encontro el producto en base a tu criteria");
-        setProductos(response.data);
+        setProductos(response.data.data);
       })
       .catch(function (error) {
         alert("Criterio de busqueda de minimo 3 caracteres");
