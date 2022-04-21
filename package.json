@@ -16,12 +16,12 @@
     "react-hook-form": "^7.26.1",
     "react-paginate": "^8.1.0",
     "react-router-dom": "^6.2.1",
-    "react-scripts": "5.0.0",
+    "react-scripts": "^5.0.0",
     "react-test-renderer": "^17.0.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "CHOKIDAR_USEPOLLING=true react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --coverage",
     "eject": "react-scripts eject"
@@ -52,10 +52,10 @@
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.6",
     "autoprefixer": "^10.4.2",
     "babel-preset-react-app": "^10.0.1",
-    "sonarqube-scanner": "^2.8.1",
     "jest-sonar-reporter": "^2.0.0",
     "postcss": "^8.4.6",
     "postcss-import": "^14.0.2",
+    "sonarqube-scanner": "^2.8.1",
     "tailwindcss": "^3.0.22"
   }
 }
