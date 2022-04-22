@@ -10,8 +10,7 @@ function Resultados({ productos, config, productosReales}) {
   }
   const renderProds = () => {
     return (
-      productos &&
-      productos.map((producto, index) => {
+      productos && productos.map((producto, index) => {
         return (
           <div
             key={producto.id}
@@ -19,11 +18,12 @@ function Resultados({ productos, config, productosReales}) {
           >
             <div className="w-auto rounded overflow-hidden shadow-lg">
               <img
-                className="w-full h-48 mx-auto"
+                className="mx-auto h-48"
                 src={"https://" + producto.image}
                 alt={producto.id}
               />
               <div className="px-6 py-4 shadow-inner">
+              <div className="text-lg mb-2">{producto.id}</div>
                 <div className="font-bold text-xl mb-2">{producto.brand}</div>
                 <p className="text-gray-700 text-base">
                   {producto.description}

@@ -10,11 +10,8 @@ function Buscador() {
   const [query, setQuery] = useState("");
   const { register, handleSubmit } = useForm({ defaultValues: query });
   const [buscando, setBuscando] = useState(false);
-  const [pageNumber, setPageNumber] = useState(1)
-  const [totalProds, setTotalProds] = useState(1)
-  const prodPerPage = 10;
-  const pagesVisited = pageNumber * prodPerPage;
-  const pageCount = Math.ceil(totalProds / prodPerPage)
+  const [pageNumber, setPageNumber] = useState(0)
+  const [pageCount, setPageCount] = useState(1)
 
   const changePage = ({selected}) => {
     setPageNumber(selected)
@@ -46,12 +43,11 @@ function Buscador() {
     }
     axios(config.current)
       .then(function (response) {
-        console.log(response.data)
         if (response.data.length === 0)
           alert("No se encontro el producto en base a tu criteria");
         setProductos(response.data.dsc);
         setProductosReales(response.data.data)
-        setTotalProds(response.data.total)
+        setPageCount(response.data.last_page)
       })
       .catch(function (error) {
         alert("Criterio de busqueda de minimo 3 caracteres");
@@ -83,7 +79,9 @@ function Buscador() {
           <p>Productos</p>
         </div>
       </nav>
-      {productos && productosReales && <Resultados productos={productos} productosReales={productosReales}/>}
+      <div className=" h-9/10">
+        {productos && productosReales && <Resultados productos={productos} productosReales={productosReales}/>}
+      </div>
       <div className="text-center">
         <ReactPaginate 
           previousLabel={<svg id="atras" className="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -97,11 +95,11 @@ function Buscador() {
           onPageChange={changePage}
           containerClassName="flex inline-flex p-2 m-2 rounded-md shadow-sm -space-x-px"
           previousLinkClassName="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
-          nextLinkClassName={"relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"}
+          nextLinkClassName={"relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 hover:bg-gray-50"}
           disabledClassName="page-item disabled"
           breakClassName="relative inline-flex items-center px-2 py-2 border border-gray-300 bg-white text-gay-500 text-sm font-medium hover:bg-gray-50"
           activeClassName="relative inline-flex items-center px-2 py-2 border border-gray-300 bg-blue-400 text-white text-sm font-medium hover:bg-gray-50"
-          pageClassName="relative inline-flex items-center px-2 py-2 border border-gray-300 bg-white text-gray-500 text-sm font-medium hover:bg-gray-50"
+          pageClassName="relative inline-flex items-center px-2 py-2 border border-gray-300 bg-white text-gray-50 text-sm font-medium hover:bg-gray-500"
         />
       </div>
     </>

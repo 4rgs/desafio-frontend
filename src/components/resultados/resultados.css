@@ -2,7 +2,7 @@ html,
 body,
 .container {
   height: 85vh;
-  width: 100vw;
+  width: 100%;
 }
 .album {
   flex-wrap: wrap;
@@ -19,14 +19,14 @@ body,
 .card {
   /* Add shadows to create the "card" effect */
   border-radius: 1vh;
-  margin-top: 2vh;
+  margin-top: 1vh;
   margin-left: 1vh;
   margin-right: 1vh;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
   transition: 0.3s;
 }
 
 /* On mouse-over, add a deeper shadow */
 .card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
 }
