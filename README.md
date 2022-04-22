@@ -28,4 +28,4 @@ npm run start
 
 ## Demo on Lab Server
 
-https://www.spids.cl
+https://dev.spids.cl
